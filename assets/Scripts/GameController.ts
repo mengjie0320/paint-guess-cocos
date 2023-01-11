@@ -31,9 +31,8 @@ export class GameController extends Component {
 
     onMouseDown(event: EventMouse) {
         let pos = event.getLocation();
-        // console.log('event.target', event);
+        console.log('game event.target', event);
 
-        // this.
         // console.log('event.getUILocation()', event.getUILocation());
         // console.log('1 pos', pos);
         // this.lastPos.x = pos.x;
