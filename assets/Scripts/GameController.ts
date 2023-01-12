@@ -1,6 +1,8 @@
 import { _decorator, Component, Node, Color, input, Input, EventMouse } from 'cc';
 import { BrushController } from './BrushController';
 const { ccclass, property } = _decorator;
+// import { log } from 'cc';
+// import { DEV } from 'cc/env';
 
 // interface Position {
 //     x: number | null;
@@ -15,10 +17,6 @@ export class GameController extends Component {
     private color = Color.BLACK;            // 笔刷颜色(默认黑色)
     private tool: string = 'BRUSH';                    // 当前工具(默认笔刷)
 
-    // private lastPos: Position = { x: null, y: null};
-    // private curPos: Position = { x: null, y: null};
-    // private isPaint: boolean = false;
-
     // 引用 BrushController
     @property({type: BrushController})
     public brushCtrl: BrushController | null = null;
@@ -31,7 +29,10 @@ export class GameController extends Component {
 
     onMouseDown(event: EventMouse) {
         let pos = event.getLocation();
-        console.log('game event.target', event);
+        // console.log('game event.target', event);
+
+        // console.log('game', event.getLocation());  // Location on screen space
+        // console.log('game', event.getUILocation());  // Location on UI space
 
         // console.log('event.getUILocation()', event.getUILocation());
         // console.log('1 pos', pos);
