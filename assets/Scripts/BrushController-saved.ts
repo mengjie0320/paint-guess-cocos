@@ -31,9 +31,12 @@ export class BrushController extends Component {
         this.graphics.close();
         this.graphics.stroke();
 
-        input.on(Input.EventType.MOUSE_MOVE, this.onMouseMove, this);
-        input.on(Input.EventType.MOUSE_DOWN, this.onMouseDown, this);
-        input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this);
+        // input.on(Input.EventType.MOUSE_MOVE, this.onMouseMove, this);
+        // input.on(Input.EventType.MOUSE_DOWN, this.onMouseDown, this);
+        // input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this);
+        this.node.on(Node.EventType.MOUSE_DOWN, this.onMouseDown, this.node);
+        this.node.on(Node.EventType.MOUSE_MOVE, this.onMouseMove, this.node);
+        this.node.on(Node.EventType.MOUSE_UP, this.onMouseUp, this.node);
         // this.graphics.fill();
     }
     // start () {

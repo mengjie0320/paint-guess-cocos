@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, Color, input, Input, EventMouse, UITransform, v3, EventTarget  } from 'cc';
 import { BrushController } from './BrushController';
+import { PaintController } from './Board/PaintController';
 import { eventTarget } from './EventController';
 const { ccclass, property } = _decorator;
 
@@ -34,6 +35,10 @@ export class GameController extends Component {
     @property({type: BrushController})
     public brushCtrl: BrushController | null = null;
 
+    // // 引用 PaintController
+    // @property({type: PaintController})
+    // public paintCtrl: PaintController | null = null;
+
 
     onLoad() {
         // 监听事件
@@ -44,6 +49,11 @@ export class GameController extends Component {
         input.on(Input.EventType.MOUSE_MOVE, this.onMouseMove, this);
         input.on(Input.EventType.MOUSE_DOWN, this.onMouseDown, this);
         input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this);
+
+        // this.node.on(Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
+        // this.node.on(Node.EventType.MOUSE_MOVE, this.onMouseMove, this);
+        // this.node.on(Node.EventType.MOUSE_UP, this.onMouseUp, this);
+        // TODO-mj input 不会触发本级  node会，加捕捉阶段底层不会触发
 
         // 设置game基本信息：笔画颜色、笔画大小
         this.brushCtrl.init(this.lineWidth, this.strokeColor);
@@ -64,11 +74,15 @@ export class GameController extends Component {
         }
     }
 
+    // paintNormalClick() {
+    //     this.
+    // }
+
 
     // 画线部分事件
     onMouseDown(event: EventMouse) {
       event.propagationStopped = true;
-
+    console.log('this', this);
       // let wordpos = event.getLocation();
       // const camera = this.getComponent(Camera);
       // const local = camera.convertToUINode(v3(wordpos.x, wordpos.y), this.node);

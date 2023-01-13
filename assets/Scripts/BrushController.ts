@@ -56,7 +56,7 @@ export class BrushController extends Component {
     }
 
     drawTo (x, y) {
-        this.graphics.circle(x, y, this.graphics.lineWidth * 0.5);
+        // this.graphics.circle(x, y, this.graphics.lineWidth * 0.5);
         this.graphics.lineTo(x, y);
         this.graphics.stroke();
         // this.graphics.moveTo(x, y);

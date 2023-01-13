@@ -1,4 +1,5 @@
 import { _decorator, Component, Node, Sprite, EventTarget, input, Input, EventMouse } from 'cc';
+import { PaintController } from './Board/PaintController';
 const { ccclass, property } = _decorator;
 const eventTarget = new EventTarget();
 
@@ -17,13 +18,16 @@ export class BoardController extends Component {
     @property({type: Sprite})
     public eraserClick: Sprite | null = null;
 
+    // // 引用 PaintController
+    // @property({type: PaintController})
+    // public paintCtrl: PaintController | null = null;
+
     start() {
         if(this.paintClick) this.paintClick.enabled = false;
         if(this.eraserClick) this.eraserClick.enabled = false;
-        // const eventTarget = new EventTarget();
-        // eventTarget.on(MOUSe)
-        // if(this.pen) input.on(Input.EventType.MOUSE_UP, this.penClick, this.pen.node);
-        // if(this.eraser) input.on(Input.EventType.MOUSE_UP, this.eraserNormalClick, this.eraser.node);
+        // this.paintCtrl.init();
+
+        // TODO-mj event监听
     }
 
     // eraserNormalClick(event) {
@@ -31,8 +35,12 @@ export class BoardController extends Component {
     //     this.isPen = !this.isPen;
     //     console.log('eraser this.isPen', this.isPen);
     // }
-    
 
+    paintNormalClick(event: EventMouse) {
+        event.propagationStopped = true;
+        // this.me
+    }
+    
     update(deltaTime: number) {
         
     }
