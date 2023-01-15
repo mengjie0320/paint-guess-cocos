@@ -16,7 +16,7 @@ interface Position {
 @ccclass('GameController')
 export class GameController extends Component {
 
-    private lineWidth: number = 1;                     // 笔刷粗细(默认1)
+    private lineWidth: number = 20;                     // 笔刷粗细(默认1)
     private eraserWidth: number = 10;                  // 橡皮擦大小(特殊笔刷，默认10)
     private strokeColor: string = '#FFB400';           // 笔刷颜色(默认黑色)
     private tool: string = 'BRUSH';                    // 当前工具(默认笔刷)
@@ -108,6 +108,12 @@ export class GameController extends Component {
         this.curPos.x = pos.x;
         this.curPos.y = pos.y;
 
+        // console.log('this.lastPos', this.lastPos);
+        // if (this.lastPos.x !== null && this.lastPos.y !== null) {
+        //   this.brushCtrl.setBrushPos(pos.x, pos.y);
+        // }
+
+        // console.log('this.curPos', this.curPos);
         if (this.curPos.x !== null && this.curPos.y !== null) {
             this.brushCtrl.drawTo(this.curPos.x, this.curPos.y);
             this.lastPos.x = this.curPos.x;

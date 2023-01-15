@@ -14,16 +14,18 @@ export class BrushController extends Component {
     // private fillColor: string = '#000000';
     public graphics: Graphics | null = null;
 
+
     init(lineWidth, strokeColor) {
         this.graphics = this.getComponent(Graphics);
         // console.log('this.graphics', this.graphics);
         this.setBrushLineWidth(lineWidth);
         this.setBrushColor(strokeColor);
-        // this.graphics.moveTo(-430, 0);
-        // this.graphics.lineTo(0, -320);
-        // this.graphics.lineTo(430, 0);
-        // this.graphics.lineTo(0, 320);
-        // this.graphics.lineTo(0, 0);
+        // // this.graphics.circle(0, 0, 10);
+        // this.graphics.moveTo(-10, 0);
+        // this.graphics.lineTo(0, -10);
+        // this.graphics.lineTo(10, 0);
+        // this.graphics.lineTo(0, 10);
+        // // this.graphics.lineTo(0, 0);
         // this.graphics.close();
         // this.graphics.stroke();
 
@@ -33,9 +35,9 @@ export class BrushController extends Component {
         // this.graphics.fill();
     }
 
-    // update(deltaTime: number) {
-        
-    // }
+    update(deltaTime: number) {
+        // console.log('deltaTime', deltaTime);
+    }
 
 
     setBrushPos (x, y) {
@@ -56,10 +58,13 @@ export class BrushController extends Component {
     }
 
     drawTo (x, y) {
-        // this.graphics.circle(x, y, this.graphics.lineWidth * 0.5);
         this.graphics.lineTo(x, y);
         this.graphics.stroke();
-        // this.graphics.moveTo(x, y);
+        // console.log('this.graphics', this.graphics);
+        // console.log('this.graphics.lineWidth * 0.25', this.graphics.lineWidth * 0.25);
+        // this.graphics.circle(x, y, 0.5);
+        // this.graphics.stroke();
+        this.graphics.moveTo(x, y);
     }
 }
 
