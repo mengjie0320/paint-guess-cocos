@@ -68,6 +68,7 @@ export class GameController extends Component {
 
     // 画线部分事件
     onMouseDown(event: EventMouse) {
+        this.boardCtrl.init(); // 重置board编辑面板
       event.propagationStopped = true;
       console.log('game onMouseDown this', this);
       // let wordpos = event.getLocation();

@@ -64,6 +64,7 @@ export class BoardController extends Component {
         this.paint.enabled = state;
         this.colorGroup.active = !state;
         this.paintClick.enabled = !state;
+        this.isColor = !state;
     }
 
     // 重置橡皮擦部分
@@ -71,6 +72,7 @@ export class BoardController extends Component {
         this.eraser.enabled = state;
         this.eraserBoard.active = !state;
         this.eraserClick.enabled = !state;
+        this.isEarser = !state;
     }
 
     // Board控制面板
@@ -82,25 +84,22 @@ export class BoardController extends Component {
         if(this.isPen) {
             // 重置画笔颜色
             eventTarget.emit('setBrushColor', this.lastPenColor);
+            this.setColorClick(true);
+            this.setEraserClick(true);
         }
     }
 
-    paintNormalClick({ isPaint }) {
-        console.log('paintNormal ', isPaint );
-        this.paint.enabled = !isPaint;
-        this.paintClick.enabled = isPaint;
-        this.colorGroup.active = isPaint;
-
+    paintNormalClick(color) {
+        this.isColor = !this.isColor;
+        console.log('paintNormal this.isColor', this.isColor );
+        this.setColorClick(!this.isColor);
         this.setEraserClick(true);
     }
 
-    eraserNormalClick({ isEarser }) {
-        console.log('eraserNormalClick',  this.isPen);
-        // this.eraserinit();
-        this.eraser.enabled = !isEarser;
-        this.eraserClick.enabled = isEarser;
-        this.eraserBoard.active = isEarser;
-
+    eraserNormalClick() {
+        this.isEarser = !this.isEarser;
+        console.log('eraserNormalClick this.isEarser',  this.isEarser);
+        this.setEraserClick(!this.isEarser);
         this.setColorClick(true);
    }
 
@@ -116,18 +115,10 @@ export class BoardController extends Component {
         eventTarget.emit('setBrushLineWidth', width);
     }
 
-
-    // eraserNormalClick(event) {
-    //     event.propagationStopped = true;
-    //     console.log('11', 11);
-    //     // this.isPen = false;
-    //     // console.log('eraser this.isPen', this.isPen);
-    // }
-
-    // paintNormalClick(event: EventMouse) {
-    //     event.propagationStopped = true;
-    //     // this.me
-    // }
+    setBoardColor(color) {
+        this.strokeColor = color;
+        eventTarget.emit('setBrushColor', color);
+    }
     
     update(deltaTime: number) {
         
