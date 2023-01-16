@@ -28,9 +28,9 @@ export class GameController extends Component {
     private isPaint: boolean = false;
 
 
-    // 画板状态
-    private isPen: boolean = true;
-    private lastPenColor: string = '#000000';
+    // // 画板状态
+    // private isPen: boolean = true;
+    // private lastPenColor: string = '#000000';
 
     // 引用 BrushController
     @property({type: BrushController})
@@ -43,8 +43,8 @@ export class GameController extends Component {
 
     onLoad() {
         // 监听事件
-        eventTarget.on('penClick', this.penClick, this);
-        eventTarget.on('paintNormalClick', this.paintNormalClick, this);
+        eventTarget.on('setBrushColor', (brushColor => this.brushCtrl.setBrushColor(brushColor)), this);
+        eventTarget.on('setBrushLineWidth', (lineWidth => this.brushCtrl.setBrushLineWidth(lineWidth)), this);
     }
     
     start() {
@@ -64,29 +64,12 @@ export class GameController extends Component {
     }
 
     
-
-    penClick() {
-      // penClick(event: EventMouse) {
-        // event.propagationStopped = true;
-        this.isPen = true;
-        console.log('this.isPen', this.isPen);
-        if(this.isPen) {
-            // 重置画笔颜色
-            this.brushCtrl.setBrushColor(this.lastPenColor);
-        }
-    }
-
-    paintNormalClick() {
-        // this.展示一下
-        console.log('this.boardCtrl', this.boardCtrl, this.isPen);
-        this.boardCtrl.colorGroup.active = true;
-    }
-
+    
 
     // 画线部分事件
     onMouseDown(event: EventMouse) {
       event.propagationStopped = true;
-    console.log('this', this);
+      console.log('game onMouseDown this', this);
       // let wordpos = event.getLocation();
       // const camera = this.getComponent(Camera);
       // const local = camera.convertToUINode(v3(wordpos.x, wordpos.y), this.node);
@@ -111,11 +94,6 @@ export class GameController extends Component {
 
         this.curPos.x = pos.x;
         this.curPos.y = pos.y;
-
-        // console.log('this.lastPos', this.lastPos);
-        // if (this.lastPos.x !== null && this.lastPos.y !== null) {
-        //   this.brushCtrl.setBrushPos(pos.x, pos.y);
-        // }
 
         // console.log('this.curPos', this.curPos);
         if (this.curPos.x !== null && this.curPos.y !== null) {

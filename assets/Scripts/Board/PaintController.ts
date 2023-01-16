@@ -6,6 +6,7 @@ import { eventTarget } from '../EventController';
 export class PaintController extends Component {
 
     private graphics: Graphics | null = null;
+    private isPaint: boolean = false;
 
     start() {
       // this.graphics = this.getComponent(Graphics);
@@ -21,8 +22,9 @@ export class PaintController extends Component {
 
     onMouseDown(event: EventMouse) {
       // event.propagationStopped = true;
-      console.log('paint this.node'); // TODO-mj ?
-      eventTarget.emit('paintNormalClick');
+      this.isPaint = !this.isPaint;
+      console.log('paint this.node', this.isPaint); // TODO-mj ?
+      eventTarget.emit('paintNormalClick', { isPaint: this.isPaint});
     }
 
     update(deltaTime: number) {
