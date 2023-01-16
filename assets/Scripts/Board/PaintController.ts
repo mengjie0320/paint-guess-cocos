@@ -7,7 +7,7 @@ export class PaintController extends Component {
 
     private graphics: Graphics | null = null;
 
-    init() {
+    start() {
       // this.graphics = this.getComponent(Graphics);
       // this.graphics.lineWidth = 5;
       // this.graphics.strokeColor.fromHEX('#000000');
@@ -21,7 +21,7 @@ export class PaintController extends Component {
 
     onMouseDown(event: EventMouse) {
       // event.propagationStopped = true;
-      console.log('pen this.node', this.node); // TODO-mj ?
+      console.log('paint this.node'); // TODO-mj ?
       eventTarget.emit('paintNormalClick');
     }
 

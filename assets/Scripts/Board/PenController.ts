@@ -12,6 +12,7 @@ export class PenController extends Component {
 
     onMouseDown(event: EventMouse) {
       // event.propagationStopped = true;
+      // this.node = undefined
       console.log('pen this.node', this.node); // TODO-mj ?
       eventTarget.emit('penClick');
     }

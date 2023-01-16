@@ -1,7 +1,8 @@
 import { _decorator, Component, Node, Color, input, Input, EventMouse, UITransform, v3, EventTarget  } from 'cc';
 import { BrushController } from './BrushController';
-import { PaintController } from './Board/PaintController';
+import { BoardController } from './BoardController';
 import { eventTarget } from './EventController';
+
 const { ccclass, property } = _decorator;
 
 // import { log } from 'cc';
@@ -35,14 +36,15 @@ export class GameController extends Component {
     @property({type: BrushController})
     public brushCtrl: BrushController | null = null;
 
-    // // 引用 PaintController
-    // @property({type: PaintController})
-    // public paintCtrl: PaintController | null = null;
+    // 引用 BoardController
+    @property({type: BoardController})
+    public boardCtrl: BoardController | null = null;
 
 
     onLoad() {
         // 监听事件
         eventTarget.on('penClick', this.penClick, this);
+        eventTarget.on('paintNormalClick', this.paintNormalClick, this);
     }
     
     start() {
@@ -57,7 +59,7 @@ export class GameController extends Component {
 
         // 设置game基本信息：笔画颜色、笔画大小
         this.brushCtrl.init(this.lineWidth, this.strokeColor);
-
+        this.boardCtrl.init();
         // eventTarget.emit('penClick');
     }
 
@@ -74,9 +76,11 @@ export class GameController extends Component {
         }
     }
 
-    // paintNormalClick() {
-    //     this.
-    // }
+    paintNormalClick() {
+        // this.展示一下
+        console.log('this.boardCtrl', this.boardCtrl, this.isPen);
+        this.boardCtrl.colorGroup.active = true;
+    }
 
 
     // 画线部分事件
